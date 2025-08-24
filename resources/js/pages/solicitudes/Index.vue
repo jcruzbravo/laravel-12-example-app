@@ -12,7 +12,6 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 const page = usePage();
 const message: string = page.props.message;
-console.log(message);
 
 </script>
 

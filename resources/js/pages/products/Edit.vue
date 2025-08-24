@@ -1,34 +1,42 @@
 <script setup lang="ts">
 import AppLayout from '@/layouts/AppLayout.vue';
-import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/vue3';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { useForm } from '@inertiajs/vue3';
 
-const breadcrumbs: BreadcrumbItem[] = [
-    {
-        title: 'Create product',
-        href: '/products/create',
-    },
-];
+interface Product {
+    id: number,
+    name: string,
+    price: number,
+    description: string,
+}
+
+const props = defineProps<{product: Product}>();
 
 const form = useForm({
-    name: '',
-    price: '',
-    description: '',
+    name: props.product.name,
+    price: props.product.price,
+    description: props.product.description,
 });
 
 const handleSubmit = () => {
-    form.post(route('products.store'));
+    form.put(route('products.update', {
+        product: props.product,
+    }));
 };
 </script>
 
 <template>
-    <Head title="Create a product" />
+    <Head title="Edit a product" />
 
-    <AppLayout :breadcrumbs="breadcrumbs">
+    <AppLayout :breadcrumbs="[
+        {
+            title: 'Edit a product',
+            href: `/products/${props.product.id}/edit`,
+        }
+    ]">
         <div class="p-4">
             <form @submit.prevent="handleSubmit" class="w-8/12 space-y-2">
                 <div class="space-y-2">
@@ -49,8 +57,9 @@ const handleSubmit = () => {
                     <div class="text-sm text-red-500" v-if="form.errors.description">{{ form.errors.description }}</div>
                 </div>
 
-                <Button type="submit" :disabled="form.processing">Add a product</Button>
+                <Button type="submit" :disabled="form.processing">Edit a product</Button>
             </form>
         </div>
     </AppLayout>
 </template>
+
