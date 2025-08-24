@@ -19,6 +19,11 @@ const mainNavItems: NavItem[] = [
         href: '/solicitudes',
         icon: FileStackIcon,
     },
+    {
+        title: 'Products',
+        href: '/products',
+        icon: FileStackIcon,
+    },
 ];
 
 const footerNavItems: NavItem[] = [

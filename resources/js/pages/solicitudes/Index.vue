@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AppLayout from '@/layouts/AppLayout.vue';
 import {type BreadcrumbItem} from '@/types';
-import { Head } from '@inertiajs/vue3';
+import { Head, usePage } from '@inertiajs/vue3';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -9,6 +9,10 @@ const breadcrumbs: BreadcrumbItem[] = [
         href: '/inicio'
     }
 ];
+
+const page = usePage();
+const message: string = page.props.message;
+console.log(message);
 
 </script>
 
