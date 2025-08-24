@@ -7,6 +7,8 @@ import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/vue3';
 import { BookOpen, FileStackIcon, Folder, LayoutGrid } from 'lucide-vue-next';
 import AppLogo from './AppLogo.vue';
+import { UsersRound } from 'lucide-vue-next';
+import { ShoppingCart } from 'lucide-vue-next';
 
 const mainNavItems: NavItem[] = [
     {
@@ -22,7 +24,12 @@ const mainNavItems: NavItem[] = [
     {
         title: 'Products',
         href: '/products',
-        icon: FileStackIcon,
+        icon: ShoppingCart,
+    },
+    {
+        title: 'Employees',
+        href: '/employees',
+        icon: UsersRound,
     },
 ];
 
